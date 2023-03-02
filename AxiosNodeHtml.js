@@ -21,10 +21,10 @@ app.use(express.static(_dirname + '/public'));
 app.get("/", async (req, res) => {
     try {
         const response = await axios.get(base_url + '/books');
-        res. render("books", { books: response.data });
+        res. render("books",{ books: response.data });
      } catch (err) {
         console.error(err);
-        res. status (500).send('Error');
+        res. status(500).send('Error');
      }
      });
 
@@ -34,7 +34,7 @@ app.get("/book/: id", async (req, res) => {
         res. render("book", { book: response.data });
     } catch (err) {
         console.error(err);
-    res. status(500). send('Error') ;
+    res. status(500).send('Error') ;
     }
     });
 
@@ -47,19 +47,19 @@ app.post("/create", async (req, res) => {
         await axios.post(base_url + '/books', data);
         res. redirect("/");
      } catch (err) {
-        console. error(err);
-        res. status(500). send('Error');
+        console.error(err);
+        res.status(500).send('Error');
      }
 });
 
-app.get("/update/: id", async (req, res) => {
+app.get("/update/:id", async (req, res) => {
     try {
         const response = await axios.get(
         base_url + '/books/' + req.params.id);
         res. render("update" , { book: response.data });
     } catch (err) {
-        console. error(err);
-        res. status (500). send('Error');
+        console.error(err);
+        res.status(500).send('Error');
     }
 });
 
@@ -69,8 +69,8 @@ app. post("/update/: id" , async (req, res) => {
         await axios.put(base_url + '/books/' + req.params.id, data);
         res. redirect("/");
      } catch (err) {
-        console. error(err);
-        res. status(500).send('Error');
+        console.error(err);
+        res.status(500).send('Error');
      }
      });
 
@@ -78,10 +78,10 @@ app. post("/update/: id" , async (req, res) => {
 app.get("/delete/: id", async (req, res) => {
     try {
         await axios.delete(base_url + '/books/' + req.params.id);
-        res. redirect(" /");
+        res. redirect("/");
      } catch (err) {
-        console. error(err);
-        res. status(500).send('Error');
+        console.error(err);
+        res.status(500).send('Error');
      }
     });
 
