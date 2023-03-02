@@ -12,7 +12,7 @@ const base_url = "http://localhost:3000" ;
 
 // Set the template engine
 app.set('view engine', 'ejs');
-app. use(bodyParser. json());
+app. use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Serve static files
@@ -21,25 +21,25 @@ app.use(express.static(_dirname + '/public'));
 app.get("/", async (req, res) => {
     try {
         const response = await axios.get(base_url + '/books');
-        res. render("books",{ books: response.data });
+        res.render("books",{ books: response.data });
      } catch (err) {
         console.error(err);
-        res. status(500).send('Error');
+        res.status(500).send('Error');
      }
      });
 
 app.get("/book/: id", async (req, res) => {
     try {
         const response = await axios.get(base_url + '/books/' + req.params.id);
-        res. render("book", { book: response.data });
+        res.render("book", { book: response.data });
     } catch (err) {
         console.error(err);
-    res. status(500).send('Error') ;
+    res.status(500).send('Error') ;
     }
     });
 
 app.get("/create", (req, res) => {
-    res. render("create");
+    res.render("create");
 });
 app.post("/create", async (req, res) => {
     try {
@@ -56,7 +56,7 @@ app.get("/update/:id", async (req, res) => {
     try {
         const response = await axios.get(
         base_url + '/books/' + req.params.id);
-        res. render("update" , { book: response.data });
+        res.render("update" , { book: response.data });
     } catch (err) {
         console.error(err);
         res.status(500).send('Error');
@@ -78,7 +78,7 @@ app. post("/update/: id" , async (req, res) => {
 app.get("/delete/: id", async (req, res) => {
     try {
         await axios.delete(base_url + '/books/' + req.params.id);
-        res. redirect("/");
+        res.redirect("/");
      } catch (err) {
         console.error(err);
         res.status(500).send('Error');
